@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 // Components
+import { connect } from 'react-redux';
 import { Button } from 'components';
+import { UserAction } from 'actions';
+import { ApiService } from 'services';
 
 class Login extends Component {
 
@@ -10,8 +13,9 @@ class Login extends Component {
         // State for form data and error message
         this.state = {
             form: {
-            username: '',
-            key: '',
+              username: '',
+              key: '',
+              error: '',
             },
         }
 
@@ -29,6 +33,7 @@ class Login extends Component {
             ...form,
             [name]: value,
           },
+          error: '',
         });
     }
 
@@ -36,12 +41,25 @@ class Login extends Component {
         //Suppress the default submit behavior
         event.preventDefault();
 
-        //TODO: submit credentials to the blockchain
+        const { form } = this.state;
+        const { setUser } = this.props;
+
+        // submit credentials to the blockchain via ApiServices
+        // if sucessful, save the username to the Redux store
+        // else, we save the error to display on screen
+
+        return ApiService.login(form)
+          .then(() => {
+            setUser({name: form.username})
+          })
+          .catch(error => {
+            this.setState({error: error.toString()});
+          });
     }
 
     render() {
         //Extracted some data from the state
-        const { form } = this.state;
+        const { form, error } = this.state;
         return (
             <div className="Login">
             <div className="title">Elemental Battles - powered by EOSIO</div>
@@ -71,10 +89,19 @@ class Login extends Component {
                   { "CONFIRM" }
                 </Button>
               </div>
+              <div className="field form-error">
+                { error && <span className="error">{ error }</span> }
+              </div>
             </form>
           </div>
         )
     }
 }
 
-export default Login;
+const mapStateToProps = state => state;
+const mapDispatchToProps = {
+  setUser: UserAction.setUser,
+}
+
+// export a Redux connected component
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
