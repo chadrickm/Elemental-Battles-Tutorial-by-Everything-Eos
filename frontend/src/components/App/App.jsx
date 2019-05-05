@@ -7,10 +7,7 @@ import { Game, Login } from 'components';
 class App extends Component {
 
   render() {
-    console.log(this.props);
     const {username: {username}} = this.props;
-
-    console.log(username);
     return (
       <div className="App">
         { username && <Game/> }
