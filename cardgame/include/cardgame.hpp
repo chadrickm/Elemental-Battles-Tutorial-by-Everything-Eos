@@ -24,6 +24,7 @@ CONTRACT cardgame : public contract {
       name      username;
       uint64_t  win_count   = 0;
       uint64_t  loss_count  = 0;
+      //string    game_data;
       
       auto primary_key() const {
         return username.value;

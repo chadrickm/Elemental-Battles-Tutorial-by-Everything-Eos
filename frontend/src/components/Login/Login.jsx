@@ -64,12 +64,14 @@ class Login extends Component {
             <div className="Login">
             <div className="title">Elemental Battles - powered by EOSIO</div>
             <div className="description">Please use the Account Name and Private Key generated in the previous page to log into the game.</div>
-            <form name="form">
+            <form name="form" onSubmit={this.handleSubmit}>
               <div className="field">
                 <label>Account name</label>
                 <input
                   type="text"
                   name="username"
+                  value={form.username}
+                  onChange={this.handleChange}
                   placeholder="All small letters, a-z, 1-5 or dot, max 12 characters"
                   pattern="[\.a-z1-5]{2,12}"
                   required
@@ -80,6 +82,8 @@ class Login extends Component {
                 <input
                   type="password"
                   name="key"
+                  value={form.key}
+                  onChange={this.handleChange}
                   pattern="^.{51,}$"
                   required
                 />

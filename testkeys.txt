@@ -1,0 +1,5 @@
+someusertest
+EOS private key:
+5JTyAgSgVXAt2GE2BczbuUyFrfezViUUnCG61P5MrWAgTz6t6oU
+EOS public key:
+EOS4uCnqzLisrCKFpoekMna3tqx65AJswPSPBfLcdwewkf8JSKF8v

@@ -2,7 +2,7 @@ import { ActionTypes } from 'const';
 
 class UserAction {
 
-    static setUser({name, win_cound, loss_count, game}) {
+    static setUser({name, win_count, loss_count, game}) {
         return {
             type: ActionTypes.SET_USER,
             name,
