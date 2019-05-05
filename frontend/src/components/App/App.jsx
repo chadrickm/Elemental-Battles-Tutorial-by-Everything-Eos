@@ -1,18 +1,27 @@
 
 import React, { Component } from 'react';
 //Components
-import { Login } from 'components';
+import { connect } from 'react-redux';
+import { Game, Login } from 'components';
 
 class App extends Component {
 
   render() {
+    console.log(this.props);
+    const {username: {username}} = this.props;
+
+    console.log(username);
     return (
       <div className="App">
-        <Login />
+        { username && <Game/> }
+        { !username && <Login/> }
       </div>
     );
   }
 
 }
 
-export default App;
+const mapStateToProps = state => state;
+
+// export a redux connected react component
+export default connect(mapStateToProps)(App);

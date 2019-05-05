@@ -50,7 +50,7 @@ class Login extends Component {
 
         return ApiService.login(form)
           .then(() => {
-            setUser({name: form.username})
+            setUser({username: form.username})
           })
           .catch(error => {
             this.setState({error: error.toString()});
