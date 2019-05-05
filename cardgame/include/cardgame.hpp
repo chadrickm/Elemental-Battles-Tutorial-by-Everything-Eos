@@ -16,7 +16,7 @@ CONTRACT cardgame : public contract {
       _users(receiver, receiver.value)
       {}
       
-      ACTION login(name user);
+      ACTION login(name username);
       
   private:
   
