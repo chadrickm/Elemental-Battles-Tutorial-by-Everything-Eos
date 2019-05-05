@@ -1,0 +1,5 @@
+*.abi
+*.wasm
+frontend/package-lock.json
+frontend/node_modules/.bin/acorn
+frontend/node_modules/
